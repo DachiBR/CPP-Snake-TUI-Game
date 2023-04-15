@@ -32,8 +32,8 @@ int main()
 
     // Draw the box and messages
     box(stdscr, 0, 0);
-    mvprintw(welcome_message_y, welcome_message_x, welcome_message);
-    mvprintw(name_prompt_y, name_prompt_x, name_prompt);
+    mvprintw(welcome_message_y, welcome_message_x, "%s", welcome_message);
+    mvprintw(name_prompt_y, name_prompt_x, "%s", name_prompt);
 
     // Enable echoing of input and read the player's name
     echo();
