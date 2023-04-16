@@ -28,20 +28,23 @@ void readFiles(vector<string>& names, vector<int>& scores)
 // function to display the leaderboard table
 void displayLeaderboard(vector<string>& names, vector<int>& scores)
 {
-    sort(scores.begin(), scores.end(), greater<int>()); // sort scores in descending order
+    // sort both names and scores vectors in descending order of scores
+    vector<pair<int, string>> nameScorePairs;
+    for (int i = 0; i < scores.size(); i++) {
+        nameScorePairs.push_back(make_pair(scores[i], names[i]));
+    }
+    sort(nameScorePairs.begin(), nameScorePairs.end(), greater<pair<int, string>>());
 
     int xMax, yMax;
     getmaxyx(stdscr, yMax, xMax); // get screen dimensions
 
     int tableWidth = 30;
-    int tableHeight = min(20, (int)scores.size() + 2);
+    int tableHeight = min(20, (int)nameScorePairs.size() + 2);
 
     int tableX = (xMax - tableWidth) / 2;
     int tableY = (yMax - tableHeight) / 2;
 
-
-
-     // set color pairs
+    // set color pairs
     start_color();
     init_pair(1, COLOR_GREEN, COLOR_BLACK);
     attron(COLOR_PAIR(1));
@@ -52,9 +55,9 @@ void displayLeaderboard(vector<string>& names, vector<int>& scores)
     // display table rows
     for (int i = 0; i < tableHeight - 2; i++) {
         int rank = i + 1;
-        if (i < scores.size()) {
-            mvprintw(tableY + 2 + i, tableX, "%d. %s", rank, names[i].c_str());
-            mvprintw(tableY + 2 + i, tableX + 20, "%d", scores[i]);
+        if (i < nameScorePairs.size()) {
+            mvprintw(tableY + 2 + i, tableX, "%d. %s", rank, nameScorePairs[i].second.c_str());
+            mvprintw(tableY + 2 + i, tableX + 20, "%d", nameScorePairs[i].first);
         }
         else {
             mvprintw(tableY + 2 + i, tableX, "%d.", rank);
@@ -63,6 +66,7 @@ void displayLeaderboard(vector<string>& names, vector<int>& scores)
 
     attroff(COLOR_PAIR(1));
 }
+
 
 int main()
 {
