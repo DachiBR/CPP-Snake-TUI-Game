@@ -3,21 +3,21 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
-#include <fstream> 
+#include <fstream>
 
-    const int MAX_X = 150;
-    const int MAX_Y = 40;
+const int MAX_X = 160;
+const int MAX_Y = 40;
 
-    class Point
-    {
-    public:
-        int x, y;
-        Point(int x, int y) : x(x), y(y) {}
-    };
+class Point
+{
+public:
+    int x, y;
+    Point(int x, int y) : x(x), y(y) {}
+};
 
-    class Snake
-    {
-    public:
+class Snake
+{
+public:
     Snake(int x, int y) : direction('d')
     {
         body.push_back(Point(x, y));
@@ -81,7 +81,6 @@
         }
         return head;
     }
-
     void grow()
     {
         Point tail = body.back();
@@ -90,12 +89,12 @@
 
     std::vector<Point> body;
 
-    private:
-        char direction;
-    };
-    class Apple
-    {
-    public:
+private:
+    char direction;
+};
+class Apple
+{
+public:
     Apple()
     {
         generate_new_location();
@@ -112,13 +111,13 @@
         return Point(x, y);
     }
 
-    private:
-        int x, y;
-    };
+private:
+    int x, y;
+};
 
-    class Game
-    {
-    public:
+class Game
+{
+public:
     Game()
     {
         initscr();
@@ -128,6 +127,12 @@
         curs_set(0);
         timeout(100);
 
+        start_color();
+
+        init_pair(1, COLOR_BLACK, COLOR_GREEN);
+        init_pair(2, COLOR_RED, COLOR_BLACK);
+        init_pair(3, COLOR_YELLOW, COLOR_BLACK);
+        init_pair(4, COLOR_BLACK, COLOR_YELLOW);
         snake = new Snake(MAX_X / 2, MAX_Y / 2);
         apple = new Apple();
 
@@ -148,16 +153,15 @@
             update();
             draw();
         }
-         // Create an ofstream object to write to the scores.txt file
+        // Create an ofstream object to write to the scores.txt file
         std::ofstream outfile("scores.txt", std::ios_base::app);
 
         // Write the final score to the file
-        outfile << score <<  std::endl;
+        outfile << score << std::endl;
 
         // Close the file
         outfile.close();
     }
-
     void process_input()
     {
         int ch = getch();
@@ -199,48 +203,58 @@
             apple->generate_new_location();
         }
     }
-
     void draw()
     {
         clear();
 
         // draw the border
+
+        wbkgd(stdscr, COLOR_PAIR(3));
+
         for (int x = 0; x < MAX_X + 2; ++x)
         {
-            mvprintw(0, x, "#");
-            mvprintw(MAX_Y + 1, x, "#");
+            attron(COLOR_PAIR(4));
+            mvprintw(0, x, " ");
+            mvprintw(MAX_Y + 1, x, " ");
+            attroff(COLOR_PAIR(4));
         }
         for (int y = 0; y < MAX_Y + 2; ++y)
         {
-            mvprintw(y, 0, "#");
-            mvprintw(y, MAX_X + 1, "#");
+            attron(COLOR_PAIR(4));
+            mvprintw(y, 0, " ");
+            mvprintw(y, MAX_X + 1, " ");
+            attroff(COLOR_PAIR(4));
         }
 
         // draw the snake
+
         for (auto &p : snake->body)
         {
-            mvprintw(p.y + 1, p.x + 1, "o");
+            attron(COLOR_PAIR(1));
+            mvprintw(p.y + 1, p.x + 1, " ");
+            attroff(COLOR_PAIR(1));
         }
 
         // draw the apple
         Point apple_loc = apple->get_location();
-        mvprintw(apple_loc.y + 1, apple_loc.x + 1, "A");
-
+        attron(COLOR_PAIR(2));
+        mvprintw(apple_loc.y + 1, apple_loc.x + 1, "O");
+        attroff(COLOR_PAIR(2));
         // draw the score
         mvprintw(MAX_Y + 3, 0, "Score: %d", score);
-
         refresh();
     }
 
-    private:
-        Snake *snake;
-        Apple *apple;
-        int score;
-        bool game_over = false;
-    };
+private:
+    Snake *snake;
+    Apple *apple;
+    int score;
+    bool game_over = false;
+};
 
-    int main()
+int main()
 {
+
     srand(time(NULL));
 
     Game game;
