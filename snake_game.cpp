@@ -1,10 +1,11 @@
-#include <iostream>
-#include <ncurses.h>
-#include <vector>
-#include <cstdlib>
-#include <ctime>
-#include <fstream>
+#include <iostream> //This library provides input/output stream objects such as std::cout and std::cin for console input and output.
+#include <ncurses.h>//This library provides functions for creating text-based user interfaces. It allows the program to control the terminal screen, handle keyboard input, and display text in a more flexible way.
+#include <vector>//This library provides the vector container class, which is a dynamic array that can grow or shrink in size. It allows you to store and manipulate a collection of elements. In the code, vector is used to store the usernames and scores read from the files, as well as the sorted pairs of names and scores for the leaderboard.
+#include <cstdlib> //srand() function: It is used to seed the random number generator. The srand() function is called with time(NULL) as the argument to seed the random number generator based on the current time. This ensures that each time the program is run, a different sequence of random numbers is generated.
+#include <ctime> //In the given code, <ctime> is used specifically for one purpose: time(NULL): It is used to obtain the current time as the number of seconds since the epoch. This value is passed as the seed to the srand() function in <cstdlib> to initialize the random number generator.
+#include <fstream>//This library is used for file input/output operations. It provides classes and functions to read from and write to files.
 
+//classes: Point, Snake, Apple, Game,
 const int MAX_X = 160;
 const int MAX_Y = 40;
 
@@ -153,13 +154,13 @@ public:
             update();
             draw();
         }
-        // Create an ofstream object to write to the scores.txt file
+        //Create an ofstream object to write to the scores.txt file
         std::ofstream outfile("scores.txt", std::ios_base::app);
 
-        // Write the final score to the file
+        //Write the final score to the file
         outfile << score << std::endl;
 
-        // Close the file
+        //Close the file
         outfile.close();
     }
     void process_input()
@@ -207,7 +208,7 @@ public:
     {
         clear();
 
-        // draw the border
+        //draw the border
 
         wbkgd(stdscr, COLOR_PAIR(3));
 
@@ -226,7 +227,7 @@ public:
             attroff(COLOR_PAIR(4));
         }
 
-        // draw the snake
+        //draw the snake
 
         for (auto &p : snake->body)
         {
@@ -235,12 +236,12 @@ public:
             attroff(COLOR_PAIR(1));
         }
 
-        // draw the apple
+        //draw the apple
         Point apple_loc = apple->get_location();
         attron(COLOR_PAIR(2));
         mvprintw(apple_loc.y + 1, apple_loc.x + 1, "O");
         attroff(COLOR_PAIR(2));
-        // draw the score
+        //draw the score
         mvprintw(MAX_Y + 3, 0, "Score: %d", score);
         refresh();
     }
