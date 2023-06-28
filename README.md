@@ -9,7 +9,8 @@ Here You can see the photos from the actual game
 
 Firstly Person enters his/her username , then the game starts , you are collecting apples, each  one is 10 points and in the leaderboard you can see the sorted ranking .
 
-![1](https://user-images.githubusercontent.com/75274431/232127320-f9effc34-66dc-4e4f-914d-1ae3f8a07ec9.png)
-![2](https://user-images.githubusercontent.com/75274431/232127324-29cf3e2b-717c-4761-9b3a-97aae61ef48d.png)
-![3](https://user-images.githubusercontent.com/75274431/232127325-98ee881b-e0c2-44a0-b7f0-80c4a7b3118f.png)
-![4](https://user-images.githubusercontent.com/75274431/232127329-0737b270-cd59-4917-8d0d-1a18347d3ac0.png)
+![main](https://github.com/DachiBR/CPP-Snake-TUI-Game/assets/75274431/01652a41-e1a8-4b2c-b890-ddbb6aa6660e)
+![welcome](https://github.com/DachiBR/CPP-Snake-TUI-Game/assets/75274431/d7859f8d-d967-4d31-a780-adaa1bcea079)
+![game](https://github.com/DachiBR/CPP-Snake-TUI-Game/assets/75274431/983231ab-a35d-48c3-a734-88a90b02bb91)
+![leaderboard](https://github.com/DachiBR/CPP-Snake-TUI-Game/assets/75274431/ae7c588d-8553-424b-aeb2-d7e97e9e95b2)
+
