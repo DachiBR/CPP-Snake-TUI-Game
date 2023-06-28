@@ -1,6 +1,6 @@
 This is simple implementation of a snake game using c++ ncurses library.
 
-To run this Game compile all c++ files with this commands:
+To run this Game compile all c++ files with these commands:
 
 g++ -o snake_game snake_game.cpp -lncurses
 g++ -o main main.cpp -lncurses
