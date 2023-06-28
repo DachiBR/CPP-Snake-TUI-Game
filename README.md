@@ -1,9 +1,12 @@
-TO run This Code compile all cpp files by typing:
+This is simple implementation of a snake game using c++ ncurses library.
+
+To run this Game compile all c++ files with this commands:
+
 g++ -o snake_game snake_game.cpp -lncurses
 g++ -o main main.cpp -lncurses
 g++ -o leaderboard leaderboard.cpp -lncurses
 
-and run ./main 
+Finally in the terminal type: ./main  and then the game starts
 
 Here You can see the photos from the actual game
 
