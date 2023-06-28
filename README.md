@@ -10,6 +10,7 @@ g++ -o main main.cpp -lncurses
 g++ -o leaderboard leaderboard.cpp -lncurses
 
 
+
 Finally in the terminal type: ./main  and then the game starts
 
 Here You can see the photos from the actual game
